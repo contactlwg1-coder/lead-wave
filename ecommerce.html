@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce & Merchant Logistics | Lead Wave (SL) Limited</title>
+  
+  <!-- FAVICON (Browser Tab Icon) -->
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+
+  <!-- SOCIAL MEDIA LINK PREVIEW METADATA -->
+  <meta property="og:title" content="E-Commerce & Merchant Logistics | Lead Wave (SL) Limited">
+  <meta property="og:description" content="Streamlined batch pickups, daily Cash-on-Delivery (COD) collections, and multi-dropoff fulfillment for social media and retail sellers. Built for people. Driven by purpose.">
+  <meta property="og:image" content="logo.png">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* CSS RESET & VARIABLES */
+    :root {
+      --primary-yellow: #FFB800;
+      --primary-yellow-hover: #E5A600;
+      --secondary-blue: #0A192F;
+      --light-blue: #1E2D4A;
+      --accent-white: #FFFFFF;
+      --bg-slate: #F8FAFC;
+      --text-dark: #0F172A;
+      --text-muted: #64748B;
+      --border-color: #E2E8F0;
+      --radius-lg: 12px;
+      --radius-md: 8px;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+      --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+      --green-success: #10B981;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--bg-slate); color: var(--text-dark); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* TOP ANNOUNCEMENT BAR */
+    .top-bar {
+      background-color: var(--secondary-blue);
+      color: rgba(255, 255, 255, 0.85);
+      padding: 10px 5%;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--light-blue);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .top-bar-contact { display: flex; gap: 18px; align-items: center; }
+    .top-bar a { color: var(--primary-yellow); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+    .top-bar a:hover { text-decoration: underline; }
+
+    /* NAVIGATION HEADER */
+    header {
+      background: var(--accent-white);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow-sm);
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 5%;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    /* BRAND LOGO LAYOUT (IMAGE ON LEFT, TEXT ON RIGHT) */
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .site-logo {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+    .logo-text {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--secondary-blue);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .logo-text span { color: var(--primary-yellow); }
+
+    /* DESKTOP NAV LINKS */
+    .nav-links { display: flex; gap: 30px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--primary-yellow-hover); font-weight: 700; }
+
+    .nav-cta { display: flex; gap: 12px; align-items: center; }
+    .btn-secondary {
+      border: 2px solid var(--secondary-blue);
+      color: var(--secondary-blue);
+      padding: 10px 20px;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .btn-secondary:hover { background: var(--secondary-blue); color: var(--accent-white); }
+
+    .btn-primary {
+      background: var(--primary-yellow);
+      color: var(--secondary-blue);
+      padding: 12px 24px;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover { background: var(--primary-yellow-hover); transform: translateY(-1px); }
+
+    /* HAMBURGER & MOBILE DRAWER */
+    .hamburger { display: none; background: none; border: none; font-size: 24px; color: var(--secondary-blue); cursor: pointer; }
+    .mobile-nav {
+      position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+      background: var(--secondary-blue); box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+      z-index: 2000; padding: 30px 20px; display: flex; flex-direction: column; transition: 0.3s ease-in-out;
+    }
+    .mobile-nav.active { right: 0; }
+    .mobile-nav-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid var(--light-blue); padding-bottom: 15px; }
+    .close-btn { background: none; border: none; color: var(--accent-white); font-size: 24px; cursor: pointer; }
+    .mobile-links { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+    .mobile-links a { color: var(--accent-white); text-decoration: none; font-size: 16px; font-weight: 600; display: block; }
+    .mobile-links a:hover, .mobile-links a.active { color: var(--primary-yellow); }
+    .nav-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 1500; display: none; }
+    .nav-overlay.active { display: block; }
+
+    /* HERO BANNER */
+    .page-hero {
+      background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--light-blue) 100%);
+      color: var(--accent-white);
+      padding: 60px 5% 80px;
+      text-align: center;
+    }
+    .page-hero h1 { font-size: 40px; font-weight: 800; margin-bottom: 10px; }
+    .page-hero h1 span { color: var(--primary-yellow); }
+    .page-hero p { color: #94A3B8; font-size: 18px; max-width: 650px; margin: 0 auto 30px; }
+
+    /* MAIN CONTENT */
+    .content-wrapper { max-width: 1200px; margin: 60px auto; padding: 0 5%; flex: 1; }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .detail-card {
+      background: var(--accent-white);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+    .detail-card h2 { font-size: 28px; color: var(--secondary-blue); font-weight: 800; margin-bottom: 20px; }
+    .detail-card p { color: var(--text-muted); font-size: 16px; margin-bottom: 20px; line-height: 1.7; }
+
+    .feature-list { list-style: none; margin: 25px 0; }
+    .feature-list li { display: flex; align-items: center; gap: 12px; font-size: 16px; color: var(--secondary-blue); font-weight: 600; margin-bottom: 15px; }
+    .feature-list li i { color: var(--primary-yellow-hover); font-size: 18px; }
+
+    /* SIDEBAR CARD */
+    .sidebar-card {
+      background: var(--secondary-blue);
+      color: var(--accent-white);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+    .sidebar-card h3 { font-size: 22px; color: var(--primary-yellow); font-weight: 800; margin-bottom: 15px; }
+    .sidebar-card p { font-size: 14px; color: #94A3B8; margin-bottom: 25px; line-height: 1.6; }
+
+    /* BENEFIT CARDS */
+    .benefits-section { margin-bottom: 60px; }
+    .section-title { text-align: center; font-size: 32px; color: var(--secondary-blue); font-weight: 800; margin-bottom: 40px; }
+    
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+    .benefit-box {
+      background: var(--accent-white);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      border: 1px solid var(--border-color);
+    }
+    .benefit-icon {
+      width: 50px; height: 50px;
+      background: rgba(255, 184, 0, 0.15);
+      color: var(--secondary-blue);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 20px;
+    }
+    .benefit-box h4 { font-size: 18px; color: var(--secondary-blue); margin-bottom: 10px; font-weight: 700; }
+    .benefit-box p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    /* FOOTER */
+    footer { background: var(--secondary-blue); color: var(--accent-white); padding: 60px 5% 20px; margin-top: auto; }
+    .footer-grid { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--light-blue); }
+    .footer-col h4 { font-size: 16px; color: var(--primary-yellow); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { color: #94A3B8; text-decoration: none; font-size: 14px; transition: 0.2s; }
+    .footer-col ul li a:hover { color: var(--accent-white); }
+    .copyright { text-align: center; color: #64748B; font-size: 13px; margin-top: 20px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .detail-grid, .benefits-grid { grid-template-columns: 1fr; gap: 30px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: block; }
+      .top-bar { flex-direction: column; text-align: center; }
+      .sidebar-card { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- OVERLAY FOR MOBILE NAV -->
+  <div class="nav-overlay" id="navOverlay" onclick="toggleMenu()"></div>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div><i class="fa-solid fa-location-dot"></i> Freetown, Sierra Leone &nbsp;|&nbsp; Mon - Sat: 8:00 AM - 7:00 PM</div>
+    <div class="top-bar-contact">
+      <a href="tel:+23288058662"><i class="fa-solid fa-phone"></i> +232 88 058 662</a>
+      <a href="https://wa.me/23288058662" target="_blank"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- HEADER / NAVIGATION -->
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="brand-logo">
+        <img src="logo.png" alt="Lead Wave Logo" class="site-logo">
+        <div class="logo-text">LEAD<span>WAVE</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="track.html">Track Package</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="track.html" class="btn-secondary">Track Order</a>
+        <a href="https://wa.me/23288058662" target="_blank" class="btn-primary"><i class="fa-solid fa-store"></i> Partner With Us</a>
+      </div>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-header">
+      <div class="brand-logo">
+        <img src="logo.png" alt="Lead Wave Logo" class="site-logo" style="height: 38px;">
+        <div class="logo-text" style="color: white;">LEAD<span>WAVE</span></div>
+      </div>
+      <button class="close-btn" onclick="toggleMenu()">&times;</button>
+    </div>
+    <ul class="mobile-links">
+      <li><a href="index.html" onclick="toggleMenu()">Home</a></li>
+      <li><a href="services.html" class="active" onclick="toggleMenu()">Services</a></li>
+      <li><a href="track.html" onclick="toggleMenu()">Track Package</a></li>
+      <li><a href="about.html" onclick="toggleMenu()">About Us</a></li>
+      <li><a href="contact.html" onclick="toggleMenu()">Contact</a></li>
+    </ul>
+    <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 12px;">
+      <a href="https://wa.me/23288058662" target="_blank" class="btn-primary" style="justify-content: center;">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp Merchant Desk
+      </a>
+      <a href="tel:+23288058662" class="btn-secondary" style="border-color: white; color: white; text-align: center;">
+        <i class="fa-solid fa-phone"></i> Call +232 88 058 662
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO BANNER -->
+  <section class="page-hero">
+    <h1>E-Commerce & <span>Merchant</span> Logistics</h1>
+    <p>Streamlined batch pickups, daily Cash-on-Delivery (COD) collections, and multi-dropoff fulfillment for social media and retail sellers.</p>
+    <a href="https://wa.me/23288058662?text=Hello%20Lead%20Wave!%20I%20am%20a%20merchant%20looking%20to%20partner%20for%20deliveries." target="_blank" class="btn-primary" style="padding: 14px 28px;">
+      <i class="fa-solid fa-handshake"></i> Become a Merchant Partner
+    </a>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="content-wrapper">
+    <div class="detail-grid">
+      
+      <!-- MAIN DETAILS -->
+      <div class="detail-card">
+        <h2>Powering Freetown's Digital Sellers</h2>
+        <p>Running a store on WhatsApp, Instagram, or Facebook requires a delivery partner you can trust with both your physical goods and your customer's payments. Lead Wave offers a dedicated logistics solution designed specifically for local vendors.</p>
+        <p>We collect your daily orders in a single batch pickup and efficiently route them to customers across Freetown, giving your brand a fast, professional, and reliable last-mile image.</p>
+        
+        <ul class="feature-list">
+          <li><i class="fa-solid fa-circle-check"></i> Single Morning Batch Pickups directly from your store or home</li>
+          <li><i class="fa-solid fa-circle-check"></i> Cash-on-Delivery (COD) collection & prompt payment transfers</li>
+          <li><i class="fa-solid fa-circle-check"></i> Discounted tiered delivery rates for high-volume daily orders</li>
+          <li><i class="fa-solid fa-circle-check"></i> End-of-day dispatch reports & delivery settlement logs</li>
+        </ul>
+      </div>
+
+      <!-- SIDEBAR BOOKING BOX -->
+      <div class="sidebar-card">
+        <h3>Merchant Onboarding</h3>
+        <p>Want to schedule a daily pickup or discuss custom delivery rates for your store?</p>
+        <a href="https://wa.me/23288058662?text=Hello%20Lead%20Wave!%20I%20am%20a%20merchant%20looking%20to%20partner%20for%20deliveries." target="_blank" class="btn-primary" style="width: 100%; justify-content: center; margin-bottom: 12px;">
+          <i class="fa-brands fa-whatsapp"></i> Chat with Merchant Desk
+        </a>
+        <a href="tel:+23288058662" class="btn-secondary" style="width: 100%; text-align: center; border-color: white; color: white; display: block;">
+          <i class="fa-solid fa-phone"></i> Call +232 88 058 662
+        </a>
+      </div>
+
+    </div>
+
+    <!-- WHY VENDORS CHOOSE US -->
+    <div class="benefits-section">
+      <h2 class="section-title">Built for Merchant Growth</h2>
+      <div class="benefits-grid">
+        <div class="benefit-box">
+          <div class="benefit-icon"><i class="fa-solid fa-money-bill-transfer"></i></div>
+          <h4>Transparent Cash-on-Delivery</h4>
+          <p>We safely collect cash or digital payments upon delivery and reconcile funds with clear statement breakdowns.</p>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon"><i class="fa-solid fa-boxes-packing"></i></div>
+          <h4>Multi-Destination Routing</h4>
+          <p>One rider takes multiple orders from your shop and distributes them across town in optimized delivery sequences.</p>
+        </div>
+        <div class="benefit-box">
+          <div class="benefit-icon"><i class="fa-solid fa-user-check"></i></div>
+          <h4>Professional Rider Presentation</h4>
+          <p>Our uniformed riders represent your store professionally, ensuring a positive final impression for your buyer.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="brand-logo" style="margin-bottom: 15px;">
+          <img src="logo.png" alt="Lead Wave Logo" class="site-logo" style="height: 40px;">
+          <div class="logo-text" style="color: white;">LEAD<span>WAVE</span></div>
+        </div>
+        <p style="color: #94A3B8; font-size: 14px; max-width: 320px;">
+          Lead Wave (SL) Limited is a registered logistics company providing efficient, secure, and prompt delivery services.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Our Services</a></li>
+          <li><a href="track.html">Track Shipment</a></li>
+          <li><a href="about.html">About Lead Wave</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal & Corporate</h4>
+        <ul>
+          <li><a href="about.html">Company Profile</a></li>
+          <li><a href="contact.html">Dispatch Terms</a></li>
+          <li><a href="contact.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Dispatch</h4>
+        <p style="color: #94A3B8; font-size: 14px;"><i class="fa-solid fa-globe"></i> www.leadwavesl.com</p>
+        <p style="color: #94A3B8; font-size: 14px; margin-top: 8px;"><i class="fa-solid fa-phone"></i> <a href="tel:+23288058662" style="color: #94A3B8; text-decoration: none;">+232 88 058 662</a></p>
+        <p style="color: #94A3B8; font-size: 14px; margin-top: 8px;"><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/23288058662" target="_blank" style="color: var(--primary-yellow); text-decoration: none;">Chat on WhatsApp</a></p>
+        <p style="color: #94A3B8; font-size: 14px; margin-top: 8px;"><i class="fa-solid fa-location-dot"></i> Freetown, Sierra Leone</p>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2026 Lead Wave (SL) Limited. Built for people. Driven by purpose.
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileNav').classList.toggle('active');
+      document.getElementById('navOverlay').classList.toggle('active');
+    }
+  </script>
+
+</body>
+</html>
